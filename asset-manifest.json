@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/smart_dropdown/static/css/main.079ba791.chunk.css",
+    "main.js": "/smart_dropdown/static/js/main.e6b94cd7.chunk.js",
+    "main.js.map": "/smart_dropdown/static/js/main.e6b94cd7.chunk.js.map",
+    "runtime-main.js": "/smart_dropdown/static/js/runtime-main.12ea2170.js",
+    "runtime-main.js.map": "/smart_dropdown/static/js/runtime-main.12ea2170.js.map",
+    "static/css/2.95b5b846.chunk.css": "/smart_dropdown/static/css/2.95b5b846.chunk.css",
+    "static/js/2.a8caa98c.chunk.js": "/smart_dropdown/static/js/2.a8caa98c.chunk.js",
+    "static/js/2.a8caa98c.chunk.js.map": "/smart_dropdown/static/js/2.a8caa98c.chunk.js.map",
+    "index.html": "/smart_dropdown/index.html",
+    "precache-manifest.a8f31ef3da9521d157379c4e12ffefcf.js": "/smart_dropdown/precache-manifest.a8f31ef3da9521d157379c4e12ffefcf.js",
+    "service-worker.js": "/smart_dropdown/service-worker.js",
+    "static/css/2.95b5b846.chunk.css.map": "/smart_dropdown/static/css/2.95b5b846.chunk.css.map",
+    "static/css/main.079ba791.chunk.css.map": "/smart_dropdown/static/css/main.079ba791.chunk.css.map",
+    "static/js/2.a8caa98c.chunk.js.LICENSE.txt": "/smart_dropdown/static/js/2.a8caa98c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.12ea2170.js",
+    "static/css/2.95b5b846.chunk.css",
+    "static/js/2.a8caa98c.chunk.js",
+    "static/css/main.079ba791.chunk.css",
+    "static/js/main.e6b94cd7.chunk.js"
+  ]
+}
