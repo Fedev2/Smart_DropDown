@@ -1,7 +1,9 @@
 {
   "name": "smart_dropdown",
   "version": "0.1.0",
+  "author": "Abdul Razzak",
   "private": true,
+  "homepage": "http://fedev2.github.io/smart_dropdown",   
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -21,8 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
