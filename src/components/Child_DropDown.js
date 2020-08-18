@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Select, { components } from "react-select";
 import { debounce } from 'throttle-debounce';
-const { MenuList, ValueContainer } = components;
+const { MenuList} = components;
 const CustomMenuList = props => {
   // Copied from source
   const ariaAttributes = {
@@ -41,8 +41,8 @@ const CustomMenuList = props => {
                 // e.persist();
                 // debounce(1000, () => handleChange(e))();
                 handleChange(e);
-              }                
-              }                     
+              }
+              }
               onMouseDown={e => {
                 e.stopPropagation();
                 e.target.focus();
@@ -61,50 +61,6 @@ const CustomMenuList = props => {
         <MenuList  {...props} />
       </div>
     </div>
-  );
-};
-
-const CustomValueContainer = ({ children, ...props }) => {
-  const commonProps = {
-    cx: props.cx,
-    clearValue: props.clearValue,
-    getStyles: props.getStyles,
-    getValue: props.getValue,
-    hasValue: props.hasValue,
-    isMulti: props.isMulti,
-    isRtl: props.isRtl,
-    options: props.options,
-    selectOption: props.selectOption,
-    setValue: props.setValue,
-    selectProps: props.selectProps,
-    theme: props.theme
-  };
-
-  return (
-    <ValueContainer {...props}>
-      {React.Children.map(children, child => {
-        return child ? (
-          child
-        ) : props.hasValue ? (
-          <components.SingleValue
-            {...commonProps}
-            isFocused={props.selectProps.isFocused}
-            isDisabled={props.selectProps.isDisabled}
-          >
-            {props.selectProps.getOptionLabel(props.getValue()[0])}
-          </components.SingleValue>
-        ) : (
-              <components.Placeholder
-                {...commonProps}
-                key="placeholder"
-                isDisabled={props.selectProps.isDisabled}
-                data={props.getValue()}
-              >
-                {props.selectProps.placeholder}
-              </components.Placeholder>
-            );
-      })}
-    </ValueContainer>
   );
 };
 
@@ -158,6 +114,7 @@ export default class Child_DropDown extends PureComponent {
     if (this.props.countries) {
       const { countries: counlist } = this.props.countries;
       let objCountries = counlist.map(item => { return { value: item, label: item } })
+      
       return (
         <div ref={this.containerRef}>
           <Select
@@ -166,8 +123,7 @@ export default class Child_DropDown extends PureComponent {
             name="color"
             options={objCountries}
             components={{
-              MenuList: CustomMenuList,
-              ValueContainer: CustomValueContainer
+              MenuList: CustomMenuList
             }}
             inputValue={this.state.inputValue}
             isSearchable={false}

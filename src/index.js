@@ -2,16 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { AppProvider } from './AppContext';
+import { createStore } from 'redux';
+import reducer from './store/reducer';
+import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker';
 
+const globalStore = createStore(reducer)
 ReactDOM.render(
-  // <React.StrictMode>
-  //   <App />
-  // </React.StrictMode>,
-  <AppProvider>
-    <App />
-  </AppProvider>,  
+  <React.StrictMode>
+    <Provider store={globalStore}>
+      <App />
+    </Provider>,
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

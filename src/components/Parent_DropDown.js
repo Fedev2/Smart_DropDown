@@ -1,22 +1,22 @@
-import React, { PureComponent, useState, useContext } from "react";
+import React, { PureComponent} from "react";
 import Select, { components } from "react-select";
-import AppContext from '../AppContext';
+import { useDispatch } from 'react-redux'
 import axios from 'axios';
 
-const { MenuList, ValueContainer } = components;
-const CustomMenuList = props => {
+const { MenuList} = components;
+const CustomMenuList = React.memo((props) => {
   const value = props.selectProps.inputValue;
-  const { ctx, setCtx } = useContext(AppContext);
+  const dispatch = useDispatch()
   // Copied from source
   const keySave = async (value) => {
     await axios
       .get('http://13.57.235.126:5000/addcountry?name=' + value)
-      .then(res => {
-        setCtx({...ctx, status: "200"})
+        .then(res => {
+        // Try this => set only if not equal to 200
+         dispatch({ type: 'Update status' })
         // console.log(res.response.status)
       })
-      .catch(err => {
-        setCtx({...ctx, status: "500"})
+        .catch(err => {
         // console.log(err.response.status)
       })
   }
@@ -27,7 +27,7 @@ const CustomMenuList = props => {
   };
   const handleChange = e => {
     props.selectProps.onInputChange(e.currentTarget.value)
-  }  
+  }
   return (
     <div>
       <div style={{ padding: 5, boxSizing: "border-box" }}>
@@ -57,7 +57,7 @@ const CustomMenuList = props => {
                 // e.persist();
                 // debounce(1000, () => handleChange(e))();
                 handleChange(e);
-              }                
+              }
               }
               onMouseDown={e => {
                 e.stopPropagation();
@@ -77,58 +77,14 @@ const CustomMenuList = props => {
             </button>
           </div>
         </div>
-        {/* </div> */}
       </div>
       <div style={{ "text-align": "left" }}>
         <MenuList  {...props} />
       </div>
     </div>
   );
-};
-
-const CustomValueContainer = ({ children, ...props }) => {
-  const commonProps = {
-    cx: props.cx,
-    clearValue: props.clearValue,
-    getStyles: props.getStyles,
-    getValue: props.getValue,
-    hasValue: props.hasValue,
-    isMulti: props.isMulti,
-    isRtl: props.isRtl,
-    options: props.options,
-    selectOption: props.selectOption,
-    setValue: props.setValue,
-    selectProps: props.selectProps,
-    theme: props.theme
-  };
-
-  return (
-    <ValueContainer {...props}>
-      {React.Children.map(children, child => {
-        return child ? (
-          child
-        ) : props.hasValue ? (
-          <components.SingleValue
-            {...commonProps}
-            isFocused={props.selectProps.isFocused}
-            isDisabled={props.selectProps.isDisabled}
-          >
-            {props.selectProps.getOptionLabel(props.getValue()[0])}
-          </components.SingleValue>
-        ) : (
-              <components.Placeholder
-                {...commonProps}
-                key="placeholder"
-                isDisabled={props.selectProps.isDisabled}
-                data={props.getValue()}
-              >
-                {props.selectProps.placeholder}
-              </components.Placeholder>
-            );
-      })}
-    </ValueContainer>
-  );
-};
+}
+)
 
 export default class Parent_DropDown extends PureComponent {
   constructor(props) {
@@ -184,8 +140,7 @@ export default class Parent_DropDown extends PureComponent {
             name="color"
             options={objCountries}
             components={{
-              MenuList: CustomMenuList,
-              ValueContainer: CustomValueContainer
+              MenuList: CustomMenuList
             }}
             inputValue={this.state.inputValue}
             isSearchable={false}
