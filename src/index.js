@@ -9,11 +9,11 @@ import * as serviceWorker from './serviceWorker';
 
 const globalStore = createStore(reducer)
 ReactDOM.render(
-  <React.StrictMode>
+//   <React.StrictMode>
     <Provider store={globalStore}>
       <App />
-    </Provider>,
-  </React.StrictMode>,
+    </Provider>
+//   </React.StrictMode>,
   document.getElementById('root')
 );
 
