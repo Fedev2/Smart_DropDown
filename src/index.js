@@ -12,7 +12,7 @@ ReactDOM.render(
 //   <React.StrictMode>
     <Provider store={globalStore}>
       <App />
-    </Provider>
+    </Provider>,
 //   </React.StrictMode>,
   document.getElementById('root')
 );
