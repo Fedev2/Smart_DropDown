@@ -26,7 +26,7 @@ const App = React.memo(() => {
       message: msg,
       type: type,
       insert: "top",
-      container: "top-right",
+      container: "top-center",
       animationIn: ["animated", "fadeIn"],
       animationOut: ["animated", "fadeOut"],
       dismiss: {
