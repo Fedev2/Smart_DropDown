@@ -3,8 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Child_DropDown from './components/Child_DropDown';
-import Parent_DropDown from './components/Parent_DropDown';
+import User from './components/User';
+import Admin from './components/Admin';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { store } from 'react-notifications-component';
@@ -13,12 +13,12 @@ import axios from 'axios';
 import './App.css';
 
 const App = React.memo(() => {
-  const [isChecked, setCheck] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
   const [countries, setCountries] = useState();
   const globalStore = useSelector(globalStore => globalStore);
   const dispatch = useDispatch();
   const handleChange = () => {
-    setCheck(!isChecked);
+    setAdmin(!isAdmin);
   }
   const displayMessage = (title, type, msg) => {
     store.addNotification({
@@ -44,15 +44,6 @@ const App = React.memo(() => {
       .catch(function (error) {
       });
   }
-  // const createFunction = useCallback(
-  //   () => {
-  //     fetchList();
-  //   },
-  //   [globalStore.status]
-  // )
-  // useEffect(() => {
-  //   createFunction();
-  // }, [createFunction])
 
   useEffect(() => {
     fetchList();
@@ -67,7 +58,7 @@ const App = React.memo(() => {
 
   if (globalStore.status === '200')
     displayMessage("Saved!", "success", "Country name added to the list.");
-  
+
   console.log("From Redux Store" + " " + globalStore.status);
   const inputRef = useRef(null);
   // return useMemo(() => {
@@ -76,18 +67,18 @@ const App = React.memo(() => {
       <ReactNotification />
       <Row>
         <label>
-          <input ref={inputRef} checked={isChecked} onChange={handleChange} className="switch" type="checkbox" />
+          <input ref={inputRef} checked={isAdmin} onChange={handleChange} className="switch" type="checkbox" />
           <div>
             <div></div>
           </div>
         </label>
-        <label style={{ paddingLeft: "20px", "font-size": "30px", color: "#3b89ec" }}>{isChecked ? 'User with Add privilege' : 'User without Add privilege'}</label>
+        <label style={{ paddingLeft: "20px", "font-size": "30px", color: "#3b89ec" }}>{isAdmin ? 'User with Add privilege' : 'User without Add privilege'}</label>
       </Row>
       <Row style={{ marginTop: "35px" }}>
-        <Col style={{ width: "100%" }}>
-          <Child_DropDown countries={countries} />
+        <Col style={{ paddingRight: "30%" }} >
+          {isAdmin ? <Admin countries={countries} /> :
+            <User countries={countries} />}
         </Col>
-        <Col>{isChecked && <Parent_DropDown countries={countries} displayMessage={displayMessage} />}</Col>
       </Row>
     </Container>
   );
